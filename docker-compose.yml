@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  fed-calculadora:
+    build:
+      context: ./fed-calculadora   # Caminho do diretório do frontend (Angular)
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"  # Mapeando a porta 80 do container para a porta 80 do host
+      
+  api-calculadora:
+    build:
+      context: ./api-calculadora   # Caminho do diretório do backend (Node.js)
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Porta 3000 no container mapeada para a porta 3000 do host
+    environment:
+      - DB_HOST=db  # Variáveis de ambiente, caso necessário (ex: banco de dados)
